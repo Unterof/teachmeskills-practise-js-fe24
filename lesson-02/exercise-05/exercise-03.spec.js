@@ -1,7 +1,6 @@
 describe('Triangle exercise', function() {
   it('should have correct constructor', function() {
-   
-  
+ 
   
 
     chai.expect(t.constructor).to.equal(Triangle);
