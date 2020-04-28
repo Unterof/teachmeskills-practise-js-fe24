@@ -1,0 +1,9 @@
+.post_ava {
+    width: 65px;
+    height: 65px;
+    border-radius: 35px;
+}
+
+.like {
+    color: rgba(223, 29, 29, 0.753);
+}

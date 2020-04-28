@@ -1,23 +1,23 @@
 
 import React from "react";
-import "./Navbar.css"
+import select from "./css/Navbar.module.css"
 
 const Navbar = () => {
   return (
-    <nav className="nav">
-      <div>
+    <nav className={select.nav}>
+      <div className = {select.item}>
         <a src="#">Profile</a>
       </div>
-      <div>
+      <div className = {select.item}>
         <a>Messages</a>
       </div>
-      <div>
+      <div className = {select.item}>
         <a>News</a>
       </div>
-      <div>
+      <div className = {select.item}>
         <a>Music</a>
-      </div>
-      <div>
+      </div >
+      <div className = {select.item}>
         <a>Settings</a>
       </div>
     </nav>

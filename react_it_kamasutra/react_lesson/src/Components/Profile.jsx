@@ -1,12 +1,13 @@
 import React from "react";
-import "./Profile.css"
+import profile from "./css/Profile.module.css"
+import Post from "./Posts/Post"
 
 const Profile = () => {
   return (
-    <div className="container">
-      <div className="upper-container">
+    <div className={profile.container}>
+      <div className={profile.upper_container}>
         <img
-          className="upper-container-image"
+          className={profile.upper_container_image}
           src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"
         ></img>
       </div>
@@ -15,10 +16,10 @@ const Profile = () => {
         <div>profile</div>
       </div>
       <div>My posts</div>
-      <div>input : my news</div>
-      <button>send</button>
-      <div>post 1</div>
-      <div>post 2</div>
+      <textarea>input : my news</textarea>
+      <button>Add</button>
+      <Post />
+      <Post />
     </div>
   );
 };
