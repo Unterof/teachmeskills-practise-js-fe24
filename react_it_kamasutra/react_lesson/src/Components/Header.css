@@ -1,0 +1,17 @@
+
+
+  .header{
+    grid-area: header;
+    background-color: rgb(33, 184, 19);
+  }
+  
+  .header img{
+    width: 60px;
+    height:50px;
+  }
+  
+  .upper-container-image {
+  width: 100%;
+  height:280px;
+  
+  }
