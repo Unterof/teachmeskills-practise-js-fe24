@@ -18,8 +18,8 @@ const Profile = () => {
       <div>My posts</div>
       <textarea>input : my news</textarea>
       <button>Add</button>
-      <Post />
-      <Post />
+      <Post message="Hello, I'm trying to anderstand prop's in react" likesCount = "5"/>
+      <Post message="Good luck man" likesCount = "24"/>
     </div>
   );
 };
