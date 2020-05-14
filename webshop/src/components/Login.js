@@ -1,26 +1,61 @@
-import React from "react";
 
-function Login() {
+import React, {useEffect} from 'react';
+import PropTypes from 'prop-types';
+
+function Login({login, password, onLoginChanged, onPasswordChanged, onSubmit, authenticated}) {
+    useEffect(() => {
+        if (authenticated === true) {
+            alert('Success!');
+        }
+    }, [authenticated]);
+
+    function submit(e) {
+        e.preventDefault();
+
+        onSubmit();
+    }
+
     return (
         <div>
-            <form>
-
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="User Name"/>
-
+            <form onSubmit={submit}>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Username</label>
+                    <input
+                        value={login}
+                        className="form-control"
+                        id="exampleInputEmail1"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter username"
+                        onChange={onLoginChanged}
+                        required
+                    />
+                </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
-                </div>
-                <div className="form-group form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                    <input
+                        value={password}
+                        type="password"
+                        className="form-control"
+                        id="exampleInputPassword1"
+                        placeholder="Password"
+                        onChange={onPasswordChanged}
+                        required
+                    />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         </div>
-    )
-
+    );
 }
 
+Login.proppTypes = {
+    login: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onLoginChanged: PropTypes.func.isRequired,
+    onPasswordChanged: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    authenticated: PropTypes.bool,
+};
+
 export default Login;
+

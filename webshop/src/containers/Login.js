@@ -3,23 +3,30 @@ import Login from "../components/Login";
 
 const mapStateToProps = state => {
     return {
-        newItem: state.todo.newItem,
+        login: state.user.userLogin,
+        password: state.user.userPassword,
+        authenticated: state.user.authenticated,
     }
 };
 const mapDispatchToProps = dispatch => {
     return {
-        newItemChanged: (e) => dispatch({
+        onSubmit: () => dispatch({
             type: 'USER/SUBMIT_LOGIN_FORM',
+        }),
+        onLoginChanged: (e) => dispatch({
+            type: 'USER/LOGIN_CHANGED',
             payload: {
                 value: e.target.value,
             }
         }),
-        onSubmit: () => dispatch({
-            type: 'TODO/NEW_ITEM_SUBMITTED',
+        onPasswordChanged: (e) => dispatch({
+            type: 'USER/PASSWORD_CHANGED',
+            payload: {
+                value: e.target.value,
+            }
         }),
     }
 };
-
 
 export default connect(
     mapStateToProps,

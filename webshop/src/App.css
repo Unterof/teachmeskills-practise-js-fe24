@@ -7,10 +7,34 @@
   pointer-events: none;
 }
 
+.product-list {
+  /*display: flex;*/
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: 23% !important;
+  margin: 5px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  justify-content: space-between;
 }
 
 .App-header {

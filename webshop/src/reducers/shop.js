@@ -1,15 +1,27 @@
 import update from 'immutability-helper';
 
 const initialState = {
-    searchQuery: '',
+    products: [],
+    cartItems: [],
 };
 
 function shopReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SEARCH_TEXT_CHANGED':
+        case 'SHOP/SAVE_DATA':
             return update(state, {
-                $merge:
-                    {searchQuery: action.payload}
+                products: {
+                    $push: action.payload.data,
+                }
+            });
+        case 'SHOP/ADD_TOD_CART':
+            if (!action.payload.id || state.cartItems.includes(action.payload.id)) {
+                return state;
+            }
+
+            return update(state, {
+                cartItems: {
+                    $push: [action.payload.id],
+                }
             });
         default:
             return state
