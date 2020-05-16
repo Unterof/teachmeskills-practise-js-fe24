@@ -1,6 +1,6 @@
 import {call, put, takeLatest, all, select} from 'redux-saga/effects';
 
-import articleService from './../services/articleService';
+import articleService from '../services/articleService';
 
 function* fetchArticles() {
     try {
