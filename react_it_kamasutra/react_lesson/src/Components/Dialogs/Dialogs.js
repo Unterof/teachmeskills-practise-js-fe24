@@ -1,35 +1,49 @@
 import React from "react";
-import dialogs from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import dialogs from "./Dialogs.module.css";
+import { NavLink } from "react-router-dom";
 
-const Dialogs = () => {
+const DialogsItem = (props) => {
+  let path = "/dialogs/" + props.id;
+
+  return (
+    <div className={dialogs.item}>
+      <NavLink to={path}>{props.name}</NavLink>
+    </div>
+  );
+};
+
+const Message = (props) => {
     return (
-        <div className={dialogs.container}>
-            <div className={dialogs.dialogsItems}>
-                <div className={dialogs.item}>
-                    <NavLink to="/dialogs/1">Kirill</NavLink>
-                </div>
-                <div className={dialogs.item}>
-                    <NavLink to="/dialogs/2"> Dmitry </NavLink>
-                </div>
-                <div className={dialogs.item}>
-                    <NavLink to="/dialogs/3">Ksenya</NavLink>
-                </div>
-                <div className={dialogs.item}>
-                    <NavLink to="/dialogs/4">Valery</NavLink>
-                </div>
-                <div className={dialogs.item}>
-                    <NavLink to="/dialogs/5">Zohan</NavLink>
-                </div>
-            </div>
-            <div className={dialogs.messages}>
-                <div className={dialogs.message}>Hi!</div>
-                <div className={dialogs.message}>Hello how are you?</div>
-                <div className={dialogs.message}>I have enough time</div>
-                <div className={dialogs.message}>You need to learn javascript more!</div>
-            </div>
-        </div>
+    <div className={dialogs.message}>{props.message}</div>
     )
 }
+
+const Dialogs = () => {
+  return (
+    <div className={dialogs.container}>
+      <div className={dialogs.dialogsItems}>
+        <DialogsItem name="Kirill" id="1" />
+
+        <DialogsItem name="Dmitry" id="2" />
+
+        <DialogsItem name="Ksenya" id="3" />
+
+        <DialogsItem name="Valery" id="4" />
+
+        <DialogsItem name="Zohan" id="5" />
+      </div>
+      <div className={dialogs.messages}>
+        <Message message = "Hi" />
+        <Message message = "Hello how are you?" />
+        <Message message = "I have enough time" />
+        <Message message = "You need to learn javascript more!" />
+        <Message message = "Men you look crazy" />
+        
+          
+        </div>
+      </div>
+    
+  );
+};
 
 export default Dialogs;
