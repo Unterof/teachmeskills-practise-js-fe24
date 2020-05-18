@@ -17,7 +17,7 @@
       - comment should have text.
       - one user can add only 10 comments per article.
 
-  User json-server for API.
+  Use json-server for API.
 
 
   Steps to implement:
