@@ -11,7 +11,8 @@ const Profile = (props) => {
     return (
         <div className={styles.container}>
             <ProfileInfo />
-            <PostSection posts={props.posts}/>
+
+            <PostSection posts={props.state.postsSection} addPost={props.addPost} updatePostText={props.updatePostText}/>
         </div>
     );
 };

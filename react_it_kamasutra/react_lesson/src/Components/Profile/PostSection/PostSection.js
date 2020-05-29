@@ -5,28 +5,39 @@ import styles from './PostSection.module.css'
 
 const PostSection = (props) => {
 
-    let postsElement = props.posts.map(el => {
+    let postsElement = props.posts.posts.map(el => <Post message={el.message} likesCount={el.likesCount}/>)
 
-        return (
+    let newPostElement = React.createRef();
 
-            <Post message = {el.message} likesCount = {el.likesCount} />
-        )
+    let addPost = () => {
+        let text = props.posts.newPostText;
+        props.addPost(text);
 
-    })
+    }
+
+    let onPostChange = () => {
+        let post = newPostElement.current.value;
+        props.updatePostText(post);
+
+
+    }
 
 
     return (
- <div className={styles.container}>  
- <div>My posts</div>
-      <textarea className={styles.containerInput}>input : my news</textarea>
-      <div className = {styles.containerButton}>
-          <button>Add</button>
-      </div>
-      
-     {postsElement}
 
- </div>
+        <div className={styles.container}>
+            <div>My posts</div>
+            <div className={styles.containerInput}>
+                <textarea ref={newPostElement} value={props.posts.newPostText} onChange={onPostChange}/>
+            </div>
+            <div className={styles.containerButton}>
+                <button onClick={addPost}>Add</button>
+            </div>
+
+            {postsElement}
+
+        </div>
     )
 }
 
-export default PostSection ;
+export default PostSection;
