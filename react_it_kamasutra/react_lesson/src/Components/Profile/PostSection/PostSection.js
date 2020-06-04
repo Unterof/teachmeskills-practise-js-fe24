@@ -9,8 +9,7 @@ const PostSection = (props) => {
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        let text = props.posts.newPostText;
+    let addPost = (text) => {
         props.addPost(text);
 
     }
