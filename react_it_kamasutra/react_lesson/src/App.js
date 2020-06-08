@@ -8,26 +8,24 @@ import Dialogs from "./Components/Dialogs/Dialogs";
 import News from "./Components/News/News";
 import Music from "./Components/Music/Music";
 import Settings from "./Components/Settings/Settings";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 
 
 const App = (props) => {
 
     return (
 
-        <BrowserRouter>
 
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <Route exact path="/profile" render={() => <Profile state={props.state} addPost={props.addPost}
-                                                                    updatePostText={props.updatePostText}/>}/>
-                <Route path="/dialogs" render={() => <Dialogs dialogsItems={props.state.dialogsItems}/>}/>
-                <Route path="/news" render={() => <News/>}/>
-                <Route path="/music" render={() => <Music/>}/>
-                <Route path="/settings" render={() => <Settings/>}/>
-            </div>
-        </BrowserRouter>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <Route exact path="/profile" render={() => <Profile state={props.state} dispatch={props.dispatch}/>}/>
+            <Route path="/dialogs" render={() => <Dialogs store={props.store} state={props.state} dispatch={props.dispatch}/>}/>
+            <Route path="/news" render={() => <News/>}/>
+            <Route path="/music" render={() => <Music/>}/>
+            <Route path="/settings" render={() => <Settings/>}/>
+        </div>
+
     );
 };
 

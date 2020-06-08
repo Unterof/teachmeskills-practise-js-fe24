@@ -1,4 +1,3 @@
-
 import * as serviceWorker from './serviceWorker';
 
 import store from './state'
@@ -6,20 +5,20 @@ import ReactDOM from "react-dom";
 import './index.css'
 import App from "./App";
 import React from "react";
+import {BrowserRouter} from "react-router-dom";
 
 let rerenderEntireTree = (state) => {
     ReactDOM.render(
-        <App state={state} addPost={store.addPost.bind(store)} updatePostText={store.updatePostText.bind(store)}/>
-
-
-        , document.getElementById('root')
+        <BrowserRouter>
+            <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+        </BrowserRouter> , document.getElementById('root')
     );
 
 }
 
-    rerenderEntireTree(store.getState());
+rerenderEntireTree(store.getState());
 
-    store.subscriber(rerenderEntireTree);
+store.subscriber(rerenderEntireTree);
 
 serviceWorker.unregister();
 

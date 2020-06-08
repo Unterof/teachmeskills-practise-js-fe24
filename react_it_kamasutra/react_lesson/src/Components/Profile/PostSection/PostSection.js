@@ -1,6 +1,9 @@
 import React from 'react' ;
 import Post from './Posts/Post';
 import styles from './PostSection.module.css'
+import {addPostActionCreator, onPostChangeActionCreator} from "../../../state";
+
+
 
 
 const PostSection = (props) => {
@@ -9,14 +12,18 @@ const PostSection = (props) => {
 
     let newPostElement = React.createRef();
 
-    let addPost = (text) => {
-        props.addPost(text);
+    let addPost = () => {
+        props.dispatch(addPostActionCreator());
 
     }
 
+
+
     let onPostChange = () => {
-        let post = newPostElement.current.value;
-        props.updatePostText(post);
+
+        let text = newPostElement.current.value;
+        let action = onPostChangeActionCreator(text)
+        props.dispatch(action);
 
 
     }
