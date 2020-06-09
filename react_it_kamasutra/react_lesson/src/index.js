@@ -1,6 +1,6 @@
 import * as serviceWorker from './serviceWorker';
 
-import store from './state'
+import store from './redux/redux-store'
 import ReactDOM from "react-dom";
 import './index.css'
 import App from "./App";
@@ -18,7 +18,10 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState());
 
-store.subscriber(rerenderEntireTree);
+store.subscribe(() => {
+    let state = store.getState();
+        rerenderEntireTree(state);
+});
 
 serviceWorker.unregister();
 

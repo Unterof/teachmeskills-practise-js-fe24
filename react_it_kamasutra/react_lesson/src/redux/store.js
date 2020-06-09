@@ -1,3 +1,7 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 const addPost = 'ADD-POST';
 const updatePost = 'UPDATE-POST';
 const updateNewMessage = 'UPDATE-NEW-MESSAGE';
@@ -39,8 +43,9 @@ let store = {
                 {id: 2, message: "Good luck man", likesCount: 24}
             ],
 
-            newPostText: 'add post',
+            newPostText: '',
         },
+        sidebarSection : {}
     },
     _callSubscriber() {
         console.log('State changed');
@@ -57,68 +62,35 @@ let store = {
     },
 
     dispatch(action) {
-        if (action.type === addPost) {
-            let newPost = {
-                id: 3,
-                message: this._state.postsSection.newPostText,
-                likesCount: 0
-            };
-            this._state.postsSection.posts.push(newPost);
-            this._state.postsSection.newPostText = '';
-            this._callSubscriber(this._state)
-        } else if (action.type === updatePost) {
-            this._state.postsSection.newPostText = action.newText;
-            this._callSubscriber(this._state)
-        } else if (action.type === updateNewMessage) {
-            this._state.dialogsItems.newMessageItem = action.item;
-            this._callSubscriber(this._state)
+        this._state.postsSection = profileReducer(this._state.postsSection, action);
+        this._state.dialogsItems = dialogsReducer(this._state.dialogsItems, action);
+        this._state.sidebarSection=sidebarReducer(this._state.sidebarSection, action)
 
-        } else if (action.type === sendMessage) {
-            let item = this._state.dialogsItems.newMessageItem;
-            this._state.dialogsItems.newMessageItem = '';
-            let dialogItem = {
-                name: 'Petruha',
-                message: item,
-                id: 6
-            };
-
-            this._state.dialogsItems.dialogs.push(dialogItem);
-
-            this._callSubscriber(this._state)
-        }
-
+        this._callSubscriber(this._state)
     }
 
 
 }
 
 export const addPostActionCreator = () => {
-    return (
-        {
-            type: addPost
-        }
-    )
-
+    return ({type: addPost})
 }
 
 
 export const onPostChangeActionCreator = (text) => {
-    return ({
-        type: updatePost, newText: text
-    })
+    return ({type: updatePost, newText: text})
 }
 
 export const updateNewMessageCreator = (item) => {
-    return ({
-        type: updateNewMessage, item: item
-    })
+    return ({type: updateNewMessage, item: item})
 }
 
+
 export const sendMessageCreator = () => {
-    return ({
-        type: sendMessage
-    })
+    return ({type: sendMessage})
 }
+
+
 export default store;
 
 
