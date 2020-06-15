@@ -1,9 +1,6 @@
 import React from 'react' ;
 import Post from './Posts/Post';
 import styles from './PostSection.module.css'
-import {addPostActionCreator, onPostChangeActionCreator} from "../../../redux/store";
-
-
 
 
 const PostSection = (props) => {
@@ -12,32 +9,30 @@ const PostSection = (props) => {
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostActionCreator());
-
+    let onAddPost = () => {
+        props.addPost();
     }
-
 
 
     let onPostChange = () => {
 
         let text = newPostElement.current.value;
-        let action = onPostChangeActionCreator(text)
-        props.dispatch(action);
-
+        props.updateNewPostText(text)
+        // props.dispatch(action);
 
     }
-
+debugger
 
     return (
 
         <div className={styles.container}>
             <div>My posts</div>
             <div className={styles.containerInput}>
-                <textarea ref={newPostElement} value={props.posts.newPostText} onChange={onPostChange} placeholder='Type your post'/>
+                <textarea ref={newPostElement} value={props.newPostText} onChange={onPostChange}
+                          placeholder='Type your post'/>
             </div>
             <div className={styles.containerButton}>
-                <button onClick={addPost}>Add</button>
+                <button onClick={onAddPost}>Add</button>
             </div>
 
             {postsElement}

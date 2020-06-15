@@ -16,9 +16,9 @@ let initialState = {
 
         {name: "Kirill", message: "Hi", id: 1},
         {name: "Dmitry", message: "Hello how are you?", id: 2},
-        {name: "Ksenya", message: "I have enough time", id: 3},
+        {name: "Ksenya", message: "Have you ever seen an ocean?", id: 3},
         {name: "Valery", message: "You need to learn javascript more!", id: 4},
-        {name: "Zohan", message: "Men you look crazy", id: 5},
+        {name: "Zohan", message: "Man you look crazy", id: 5},
 
 
     ],
@@ -48,5 +48,12 @@ const dialogsReducer = (state = initialState, action) => {
     }
 
 }
+export const updateNewMessageCreator = (item) => {
+    return { type: updateNewMessage, item: item };
+};
+
+export const sendMessageCreator = () => {
+    return { type: sendMessage };
+};
 
 export default dialogsReducer;

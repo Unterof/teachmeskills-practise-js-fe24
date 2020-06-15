@@ -9,6 +9,7 @@ const Post = (props) => {
         <div className={styles.container}>
             <img
                 className={styles.post_ava}
+                alt='avatar'
                 src="https://i.pinimg.com/originals/0c/a9/e2/0ca9e28dcb12dc698cfd2beda6d6fa64.jpg"
             />
             <div className={styles.post_container}>

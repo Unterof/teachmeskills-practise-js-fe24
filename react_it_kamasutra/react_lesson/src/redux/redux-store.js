@@ -7,6 +7,8 @@ let reducers = combineReducers({
     postsSection:profileReducer,
     dialogsItems :dialogsReducer,
     sidebarSection:sidebarReducer
+
+   
 })
 
 let store = createStore(reducers);
