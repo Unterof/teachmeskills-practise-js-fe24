@@ -21,7 +21,7 @@ const PostSection = (props) => {
         // props.dispatch(action);
 
     }
-debugger
+
 
     return (
 

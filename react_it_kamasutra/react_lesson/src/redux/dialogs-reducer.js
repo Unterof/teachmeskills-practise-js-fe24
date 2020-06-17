@@ -29,22 +29,26 @@ let initialState = {
 }
 
 const dialogsReducer = (state = initialState, action) => {
-    switch (action.type) {
+ switch (action.type) {
         case updateNewMessage:
-            state.newMessageItem = action.item;
-            return state;
-        case sendMessage :
-            let item = state.newMessageItem;
-            state.newMessageItem = '';
-            let dialogItem = {
-                name: 'Petruha',
-                message: item,
-                id: 6
-            }
-            state.dialogs.push(dialogItem)
-            return state;
+          return {
+               ...state,
+               newMessageItem : action.item
+           };
+
+
+        case sendMessage : {
+             let item = state.newMessageItem;
+             return {
+               ...state,
+               newMessageItem: '',
+               dialogs: [...state.dialogs,{name: 'Petruha',message: item,id: 6}]
+           };
+        }
         default :
             return state;
+
+
     }
 
 }
@@ -57,3 +61,72 @@ export const sendMessageCreator = () => {
 };
 
 export default dialogsReducer;
+
+
+
+//------ до рефакторинга ------------------
+// const dialogsReducer = (state = initialState, action) => {
+//
+//     let newState = {
+//         ...state,
+//         messages: [...state.dialogs]
+//     };
+//
+//     switch (action.type) {
+//         case updateNewMessage: {
+//             newState.newMessageItem = action.item;
+//             return newState;
+//         }
+//
+//         case sendMessage : {
+//
+//
+//             let item = newState.newMessageItem;
+//             newState.newMessageItem = '';
+//             let dialogItem = {
+//                 name: 'Petruha',
+//                 message: item,
+//                 id: 6
+//             }
+//             newState.dialogs.push(dialogItem)
+//             return newState;
+//         }
+//         default :
+//             return state;
+//
+//
+//     }
+//
+// }
+
+// --------------- 2ой рефакторинг--------------------------
+
+// const dialogsReducer = (state = initialState, action) => {
+//
+//     let stateCopy;
+//
+//     switch (action.type) {
+//         case updateNewMessage:
+//             stateCopy = {
+//                 ...state,
+//                 newMessageItem : action.item
+//             }
+//             return stateCopy;
+//
+//
+//         case sendMessage : {
+//             let item = state.newMessageItem;
+//             stateCopy = {
+//                 ...state,
+//                 newMessageItem: '',
+//                 dialogs: [...state.dialogs,{name: 'Petruha',message: item,id: 6}]
+//             }
+//             return stateCopy;
+//         }
+//         default :
+//             return state;
+//
+//
+//     }
+//
+// }
