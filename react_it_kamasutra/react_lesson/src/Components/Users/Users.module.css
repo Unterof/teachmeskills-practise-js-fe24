@@ -1,0 +1,29 @@
+
+.container{
+
+
+
+  background-color: #80ffff;
+  grid-template-columns:10fr;
+}
+.pages span:hover{
+    cursor: pointer;
+}
+.containerItem{
+
+ display: block;
+  padding: 10px;
+
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+
+}
+
+.selectedPage {
+    font-weight: bold;
+}
+
+

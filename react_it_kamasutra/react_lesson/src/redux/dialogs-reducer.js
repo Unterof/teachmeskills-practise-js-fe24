@@ -3,11 +3,11 @@ const sendMessage = 'SEND_MESSAGE';
 
 let initialState = {
     images: [
-        {name: "Kirill", img: "/images/avatar/1.jpg"},
-        {name: "Dmitry", img: "/images/avatar/2.jpg"},
-        {name: "Ksenya", img: "/images/avatar/3.jpg"},
-        {name: "Valery", img: "/images/avatar/4.jpg"},
-        {name: "Zohan", img: "/images/avatar/5.jpg"}
+        {id: 1, name: "Kirill", img: "/images/avatar/1.jpg"},
+        {id: 2, name: "Dmitry", img: "/images/avatar/2.jpg"},
+        {id: 3, name: "Ksenya", img: "/images/avatar/3.jpg"},
+        {id: 4, name: "Valery", img: "/images/avatar/4.jpg"},
+        {id: 5, name: "Zohan", img: "/images/avatar/5.jpg"}
 
 
     ]
