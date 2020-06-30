@@ -7,7 +7,7 @@ const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT'
 let initialState = {
     users: [],
     newPostText: '',
-    pageSize:5,
+    pageSize:10,
     totalUserCount: 0,
     currentPage: 1
 }
