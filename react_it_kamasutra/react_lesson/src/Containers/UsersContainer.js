@@ -1,16 +1,30 @@
 
-import {followAC, setCurrentPageAC, setTotalUserCountAC, setUsersAC, unfollowAC} from "../redux/users-reducer";
+import {
+    follow,
+    setCurrentPage,
+    setToggleStatus,
+    setTotalUserCount,
+    setUsers,
+    unfollow
+} from "../redux/users-reducer";
 import {connect} from "react-redux";
 import * as React from "react";
-import * as axios from "axios";
+import  axios from "axios";
 import Users from "../Components/Users/Users";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import styles from "./../Components/Users/Users.module.css";
+
 
 
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-                this.props.setUser(response.data.items)
+        this.props.setToggleStatus(true);
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+
+                this.props.setToggleStatus(false)
+                this.props.setUsers(response.data.items)
                 this.props.setTotalUserCount(response.data.totalCount)
 
             }
@@ -20,21 +34,27 @@ class UsersAPIComponent extends React.Component {
 
     onPageChanged = (page) => {
         this.props.setCurrentPage(page)
+        this.props.setToggleStatus(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`).then(response => {
-                this.props.setUser(response.data.items)
-
+            this.props.setUsers(response.data.items)
+            this.props.setToggleStatus(false)
             }
+
         )
     }
 
     render() {
-        return <Users totalUserCount={this.props.totalUserCount}
+
+        return <>    {this.props.isFetching ? <CircularProgress color="secondary" className={styles.toggle}/> : null}
+            <Users totalUserCount={this.props.totalUserCount}
                       pageSize={this.props.pageSize}
                       currentPage={this.props.currentPage}
                       onPageChanged={this.onPageChanged}
                       users={this.props.users}
                       follow={this.props.follow}
-                      unfollow={this.props.unfollow}/>
+                      unfollow={this.props.unfollow}
+                      />
+                      </>
     }
 }
 
@@ -44,34 +64,36 @@ let mapStateToProps = (state) => {
         users: state.usersSection.users,
         pageSize: state.usersSection.pageSize,
         totalUserCount: state.usersSection.totalUserCount,
-        currentPage: state.usersSection.currentPage
-    }
-}
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUser: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (page) => {
-            dispatch(setCurrentPageAC(page));
-        },
-        setTotalUserCount: (count) => {
-            dispatch(setTotalUserCountAC(count));
-        }
+        currentPage: state.usersSection.currentPage,
+        isFetching: state.usersSection.isFetching
     }
 }
 
 
-const UsersContainer = connect (mapStateToProps,mapDispatchToProps) (UsersAPIComponent);
-
-export default UsersContainer;
 
 
+export default connect (mapStateToProps,{follow,unfollow,setUsers,setCurrentPage,setTotalUserCount,setToggleStatus}) (UsersAPIComponent);
+
+
+
+// let mapDispatchToProps = (dispatch) => {
+// return {
+//
+//         unfollow: (userId) => {
+//             dispatch(unfollowAC(userId));
+//         },
+//         setUser: (users) => {
+//             dispatch(setUsersAC(users));
+//         },
+//         setCurrentPage: (page) => {
+//             dispatch(setCurrentPageAC(page));
+//         },
+//         setTotalUserCount: (count) => {
+//             dispatch(setTotalUserCountAC(count));
+//         },
+//         setToggleStatus: (isFetching) => {
+//             dispatch(setToggleStatusAC(isFetching));
+//         }
+//     }
+// }
 

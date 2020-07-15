@@ -2,6 +2,9 @@ import  React from "react";
 import styles from "./Users.module.css";
 import avatar from "../../assets/image/avatar.jpg";
 import Button from "@material-ui/core/Button";
+import {NavLink} from "react-router-dom";
+
+
 // import Pagination from '@material-ui/lab/Pagination';
 
 
@@ -17,7 +20,9 @@ let Users = (props) => {
 
             <div className={styles.container}>
                 {/*<button onClick={this.getUser}>Get Users</button>*/}
+
                 <div className={styles.pages}>
+
                 {pages.map(e => {
                     return (
                           <span className={props.currentPage === e && styles.selectedPage}
@@ -35,8 +40,10 @@ let Users = (props) => {
                              <div className={styles.containerItem} key={e.id}>
 
                             <div>
+                                <NavLink to={'/profile/'+ e.id}>
                                 <img alt={e.name} src={e.photos.small != null ? e.photos.small : avatar}
                                      className={styles.avatar}/>
+                                     </NavLink>
                                 {/*<Avatar alt={e.name} src={e.photos.small} />*/}
                                 <div>
                                     {e.followed ? <Button variant="contained" color="secondary"

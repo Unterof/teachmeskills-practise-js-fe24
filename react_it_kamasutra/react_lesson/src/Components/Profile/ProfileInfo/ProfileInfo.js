@@ -1,7 +1,18 @@
-import React from 'react';
+import React from "react";
 import styles from "../Profile.module.css"
+import avatar from "../../../assets/image/avatar.jpg"
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+if (!props.profile){
+    return (
+        <img
+            alt='avatar'
+
+        src = {avatar}/>
+    )
+
+}
+
     return (
         <div className={styles.upper_container}>
             <img
@@ -11,9 +22,14 @@ const ProfileInfo = () => {
             />
 
             <div>
+
                 <img
                 alt='avatar'
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT_60lI5aocHk7Wt38bnHRx_ajm9u6RmPZPp954i6rrRfYS6K9k&usqp=CAU"/>
+                    src={props.profile.photos.large}/>
+
+
+                {/*<img alt="avatar" src={avatar}/>*/}
+
                 <div>profile</div>
             </div>
         </div>

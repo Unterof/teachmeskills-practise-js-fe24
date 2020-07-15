@@ -1,9 +1,7 @@
 
 .container{
-
-
-
-  background-color: #80ffff;
+    position: relative;
+ background-color: #80ffff;
   grid-template-columns:10fr;
 }
 .pages span:hover{
@@ -26,4 +24,10 @@
     font-weight: bold;
 }
 
+.toggle {
+    margin-left: 50%;
+    margin-top:25%;
+    position: absolute;
+    z-index: 1;
+}
 

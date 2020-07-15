@@ -7,11 +7,12 @@ import PostSectionContainer from "../../Containers/PostSectionContainer";
 
 
 const Profile = (props) => {
-
+    
 
     return (
+
         <div className={styles.container}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
 
             <PostSectionContainer  />
         </div>
