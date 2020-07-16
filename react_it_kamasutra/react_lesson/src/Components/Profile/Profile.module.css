@@ -9,3 +9,14 @@ background-color: #80ffff;
   height: 280px;
 
 }
+
+.fullName {
+  font-weight:bold ;
+}
+.avaSection {
+  display: inline-flex;
+}
+
+.aboutMe {
+  font-style: italic;
+}

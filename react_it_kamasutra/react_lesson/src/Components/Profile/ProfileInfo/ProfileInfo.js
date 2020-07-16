@@ -21,17 +21,19 @@ if (!props.profile){
                 src="https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"
             />
 
-            <div>
+            <div className = {styles.avaSection}>
 
                 <img
                 alt='avatar'
                     src={props.profile.photos.large}/>
 
-
+             <p className={styles.aboutMe}>{props.profile.aboutMe}</p>
                 {/*<img alt="avatar" src={avatar}/>*/}
-
-                <div>profile</div>
             </div>
+                <div>
+                    <p className={styles.fullName}>{props.profile.fullName}</p>
+                </div>
+
         </div>
 
 
