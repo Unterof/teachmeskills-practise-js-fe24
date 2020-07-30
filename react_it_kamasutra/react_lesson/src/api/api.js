@@ -17,8 +17,8 @@ export const usersAPI = {
                 }
             )
     },
-    getUsers2: {
-        postUser (user = 1,) {
+
+        follow (user = 1,) {
             return instance.post(`follow/${user}`).then(responce => {
 
                 return responce.data
@@ -26,7 +26,7 @@ export const usersAPI = {
             })
         },
 
-            deleteUser(user = 1){
+        unfollow(user = 1){
                 return instance.delete(`follow/${user}`).then(responce => {
 
                     return responce.data
@@ -34,7 +34,7 @@ export const usersAPI = {
                 })
             }
 
-    }
+
 
 }
 

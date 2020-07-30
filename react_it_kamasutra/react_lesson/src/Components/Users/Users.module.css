@@ -4,6 +4,10 @@
  background-color: #80ffff;
   grid-template-columns:10fr;
 }
+.pages span{
+
+    margin-right: 1px;
+}
 .pages span:hover{
     cursor: pointer;
 }

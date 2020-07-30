@@ -1,12 +1,11 @@
 
 import {
-    follow,
+    unfollowUser,
+    followUser,
+    getUsers,
     setCurrentPage,
     setFollowingProgress,
-    setToggleStatus,
-    setTotalUserCount,
-    setUsers,
-    unfollow
+
 } from "../redux/users-reducer";
 import {connect} from "react-redux";
 import * as React from "react";
@@ -14,7 +13,7 @@ import * as React from "react";
 import Users from "../Components/Users/Users";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styles from "./../Components/Users/Users.module.css";
-import {usersAPI} from "../api/api";
+
 
 
 
@@ -22,31 +21,13 @@ import {usersAPI} from "../api/api";
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
-        this.props.setToggleStatus(true);
+        this.props.getUsers(this.props.currentPage,this.props.pageSize);
 
-
-
-        usersAPI.getUsers (this.props.currentPage,this.props.pageSize).then(data => {
-
-                this.props.setToggleStatus(false)
-
-                this.props.setUsers(data.items)
-                this.props.setTotalUserCount(data.totalCount)
-
-            }
-        )
 
     }
 
     onPageChanged = (page) => {
-        this.props.setCurrentPage(page)
-        this.props.setToggleStatus(true)
-        usersAPI.getUsers (page,this.props.pageSize).then(data => {
-            this.props.setUsers(data.items)
-            this.props.setToggleStatus(false)
-            }
-
-        )
+        this.props.getUsers(page,this.props.pageSize)
     }
 
     render() {
@@ -61,6 +42,8 @@ class UsersAPIComponent extends React.Component {
                       unfollow={this.props.unfollow}
                       followingInProgress = {this.props.followingInProgress}
                       setFollowingProgress = {this.props.setFollowingProgress}
+                      unfollowUser = {this.props.unfollowUser}
+        followUser = {this.props.followUser}
                       />
                       </>
     }
@@ -81,7 +64,7 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect (mapStateToProps,{follow,unfollow,setUsers,setCurrentPage,setTotalUserCount,setToggleStatus,setFollowingProgress}) (UsersAPIComponent);
+export default connect (mapStateToProps,{setCurrentPage,setFollowingProgress,unfollowUser,followUser,getUsers}) (UsersAPIComponent);
 
 
 

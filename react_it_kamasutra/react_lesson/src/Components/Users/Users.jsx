@@ -4,10 +4,6 @@ import avatar from "../../assets/image/avatar.jpg";
 import Button from "@material-ui/core/Button";
 import {NavLink} from "react-router-dom";
 
-import {usersAPI} from "../../api/api";
-
-
-
 
 // import Pagination from '@material-ui/lab/Pagination';
 
@@ -24,7 +20,6 @@ let Users = (props) => {
 
         <div className={styles.container}>
             {/*<button onClick={this.getUser}>Get Users</button>*/}
-
             <div className={styles.pages}>
 
                 {pages.map(e => {
@@ -55,36 +50,16 @@ let Users = (props) => {
                                      className={styles.avatar}/>
                             </NavLink>
                             {/*<Avatar alt={e.name} src={e.photos.small} />*/}
+
                             <div>
-                                {e.followed ? <Button disabled={props.followingInProgress.some(id=>id===e.id)}  variant="contained" color="secondary"
-                                                      onClick={() => {
-                                                          props.setFollowingProgress(true, e.id)
+                                {e.followed
+                                    ? <Button disabled={props.followingInProgress.some(id => id === e.id)}
+                                                      variant="contained" color="secondary"
+                                                      onClick={() => {props.unfollowUser(e.id)}}>UNFOLLOW</Button>
 
-                                                          usersAPI.getUsers2.deleteUser(e.id, props.unfollow)
-                                                              .then(data => {
-
-                                                                  if (data.resultCode === 0) {
-                                                                      props.unfollow(e.id)
-                                                                  }
-                                                                  props.setFollowingProgress(false,e.id)
-                                                              })
-
-
-
-                                                      }}>UNFOLLOW</Button>
-                                    : <Button disabled={props.followingInProgress.some(id=>id===e.id)} variant="contained" color="secondary" onClick={() => {
-
-                                        props.setFollowingProgress(true,e.id)
-                                        usersAPI.getUsers2.postUser(e.id, props.follow).then(data => {
-
-                                            if (data.resultCode === 0) {
-                                                props.follow(e.id)
-
-                                            }
-                                            props.setFollowingProgress(false,e.id)
-                                        })
-
-                                    }}>FOLLOW</Button>}
+                                    : <Button disabled={props.followingInProgress.some(id => id === e.id)}
+                                              variant="contained" color="secondary"
+                                              onClick={() => {props.followUser(e.id)}}>FOLLOW</Button>}
 
                             </div>
                             <span>
@@ -112,15 +87,6 @@ let Users = (props) => {
 export default Users;
 
 
-
-
-
-
-
-
-
-
-
 // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${e.id}`, {
 //     withCredentials: true,
 //     headers: {
@@ -134,11 +100,6 @@ export default Users;
 //             }
 //         }
 //     )
-
-
-
-
-
 
 
 // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${e.id}`, {}, {
