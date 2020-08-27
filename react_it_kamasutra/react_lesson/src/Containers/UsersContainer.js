@@ -13,6 +13,7 @@ import Users from "../Components/Users/Users";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import styles from "./../Components/Users/Users.module.css";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -64,7 +65,7 @@ let mapStateToProps = (state) => {
 
 
 
-export default withAuthRedirect(connect(mapStateToProps,{setCurrentPage,setFollowingProgress,getUsers,followUser,unfollowUser}) (UsersAPIComponent));
+export default compose (withAuthRedirect,connect(mapStateToProps,{setCurrentPage,setFollowingProgress,getUsers,followUser,unfollowUser})) (UsersAPIComponent);
 
 
 

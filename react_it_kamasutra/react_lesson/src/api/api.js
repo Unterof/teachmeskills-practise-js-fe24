@@ -36,10 +36,10 @@ export const usersAPI = {
 
     profileUser(id){
 
-        return instance.get(`profile/`+id).then(response => {
-            return response.data
+        console.warn('Obsolete method! ProfileAPI object')
+        return profileAPI.profileUser(id)
 
-        })
+
     },
 
     authMe(){
@@ -49,6 +49,30 @@ export const usersAPI = {
     }
 
 }
+
+export const profileAPI = {
+    profileUser(id){
+
+        return instance.get(`profile/`+id).then(response => {
+            return response.data
+
+        })
+    },
+
+    getStatus(id){
+        return instance.get(`profile/status`+id).then(responce => {
+            return responce.data
+        })
+    },
+
+    updateStatus(status) {
+        return instance.put(`profile/status`,{status})
+    }
+
+
+
+}
+
 
 
 

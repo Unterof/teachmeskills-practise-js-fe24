@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../Profile.module.css"
 import avatar from "../../../assets/image/avatar.jpg"
+import StatusField from "../../../Containers/StatusField";
 
 const ProfileInfo = (props) => {
 if (!props.profile){
@@ -26,6 +27,9 @@ if (!props.profile){
                 <img
                 alt='avatar'
                     src={props.profile.photos.large}/>
+                    <div>
+                        <StatusField status="Hello my friends"/>
+                    </div>
 
              <p className={styles.aboutMe}>{props.profile.aboutMe}</p>
                 {/*<img alt="avatar" src={avatar}/>*/}
