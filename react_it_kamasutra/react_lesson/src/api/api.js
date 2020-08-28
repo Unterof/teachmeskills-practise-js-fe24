@@ -19,20 +19,12 @@ export const usersAPI = {
     },
 
     follow (user = 1,) {
-            return instance.post(`follow/${user}`).then(response => {
-
-                return response.data
-
-            })
+            return instance.post(`follow/${user}`)
         },
 
-    unfollow(user = 1){
-                return instance.delete(`follow/${user}`).then(response => {
-
-                    return response.data
-
-                })
-            },
+    unfollow(user = 1) {
+        return instance.delete(`follow/${user}`)
+    },
 
     profileUser(id){
 
@@ -43,9 +35,7 @@ export const usersAPI = {
     },
 
     authMe(){
-        return instance.get(`auth/me`).then(response =>{
-            return response.data
-        })
+        return instance.get(`auth/me`)
     }
 
 }
