@@ -23,25 +23,20 @@ let initialState = {
 
     ],
 
-    newMessageItem: '',
+   
 
 
 }
 
 const dialogsReducer = (state = initialState, action) => {
  switch (action.type) {
-        case updateNewMessage:
-          return {
-               ...state,
-               newMessageItem : action.item
-           };
-
+       
 
         case sendMessage : {
-             let item = state.newMessageItem;
+             let item = action.newMessageBody;
              return {
                ...state,
-               newMessageItem: '',
+               
                dialogs: [...state.dialogs,{name: 'Petruha',message: item,id: 6}]
            };
         }
@@ -56,8 +51,8 @@ export const updateNewMessageCreator = (item) => {
     return { type: updateNewMessage, item: item };
 };
 
-export const sendMessageCreator = () => {
-    return { type: sendMessage };
+export const sendMessageCreator = (newMessageBody) => {
+    return { type: sendMessage, newMessageBody };
 };
 
 export default dialogsReducer;

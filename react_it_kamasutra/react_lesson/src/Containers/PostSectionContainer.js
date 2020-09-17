@@ -1,5 +1,5 @@
 import PostSection from "../Components/Profile/PostSection/PostSection";
-import {addPostActionCreator, onPostChangeActionCreator} from "../redux/profile-reducer";
+import {addPostActionCreator} from "../redux/profile-reducer";
 import {connect} from "react-redux";
 
 
@@ -11,27 +11,12 @@ let mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-
-    return {
-
-        addPost: () => {
-            dispatch(addPostActionCreator())
-        },
-
-
-        updateNewPostText: (text) => {
-            let action = onPostChangeActionCreator(text)
-            dispatch(action)
-        }
-
-    }
-}
 
 
 
 
-const PostSectionContainer = connect(mapStateToProps,mapDispatchToProps)(PostSection)
+
+const PostSectionContainer = connect(mapStateToProps,{addPostActionCreator})(PostSection)
 
 export default PostSectionContainer;
 

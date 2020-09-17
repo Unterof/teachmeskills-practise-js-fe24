@@ -14,11 +14,14 @@ const Post = (props) => {
             />
             <div className={styles.post_container}>
                 {props.message}
-                <div>
-                    <button>
+                <div className={styles.likeDiv}>
+                    <button >-</button>
+                    <span>
                         <div className={styles.like}>like</div>
                         {props.likesCount}
-                    </button>
+                    </span>
+                    <button >+</button>
+
                 </div>
             </div>
         </div>

@@ -36,6 +36,10 @@ export const usersAPI = {
 
     authMe(){
         return instance.get(`auth/me`)
+    },
+
+    authLoginMe(email,pass,rememberMe,captcha) {
+        return instance.post(`auth/login`,{email,pass,rememberMe,captcha})
     }
 
 }
@@ -50,13 +54,11 @@ export const profileAPI = {
     },
 
     getStatus(id){
-        return instance.get(`profile/status`+id).then(responce => {
-            return responce.data
-        })
+        return instance.get(`profile/status/`+id)
     },
 
     updateStatus(status) {
-        return instance.put(`profile/status`,{status})
+        return instance.put(`profile/status/`,{status})
     }
 
 

@@ -28,7 +28,7 @@ if (!props.profile){
                 alt='avatar'
                     src={props.profile.photos.large}/>
                     <div>
-                        <StatusField status="Hello my friends"/>
+                        <StatusField status={props.status} updateUserStatus={props.updateUserStatus}/>
                     </div>
 
              <p className={styles.aboutMe}>{props.profile.aboutMe}</p>

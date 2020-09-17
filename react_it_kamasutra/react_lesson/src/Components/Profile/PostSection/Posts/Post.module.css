@@ -8,3 +8,8 @@
     color: rgba(223, 29, 29, 0.753);
     
 }
+
+.likeDiv {
+    display: flex;
+    flex-direction: row;
+}
