@@ -3,7 +3,7 @@ import Header from "./../Components/Header/Header"
 
 import {connect} from "react-redux";
 
-import {getMeAuthorized} from "../redux/auth-reducer";
+import {getMeAuthorized, logoutMe} from "../redux/auth-reducer";
 
 
 
@@ -45,4 +45,4 @@ let mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, {getMeAuthorized})(HeaderContainer);
+export default connect(mapStateToProps, {getMeAuthorized,logoutMe})(HeaderContainer);
