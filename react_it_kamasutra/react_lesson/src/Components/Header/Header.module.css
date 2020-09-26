@@ -17,3 +17,9 @@
 
   color: blue;
 }
+
+.formOnError {
+  width: 25%;
+  color: red;
+  border: 2px red solid
+}

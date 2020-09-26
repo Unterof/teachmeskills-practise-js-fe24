@@ -11,7 +11,9 @@ import {compose} from "redux";
 let mapStateToProps = (state) => {
     return {
         profile: state.postsSection.profile,
-        status: state.postsSection.status
+        status: state.postsSection.status,
+        authorizedId : state.auth.userId,
+        isAuth: state.auth.isAuth
 
     }
 }
@@ -21,7 +23,7 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if(!userId) {
-            userId=9401;
+            userId=this.props.authorizedId
         }
 
         this.props.profileUserThunk(this.props.match.params.userId);
