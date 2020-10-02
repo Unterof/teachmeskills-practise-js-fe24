@@ -2,7 +2,7 @@
 import {
     followUser,
     unfollowUser,
-    getUsers,
+    requestUsers,
     setCurrentPage,
     setFollowingProgress,
 
@@ -10,10 +10,18 @@ import {
 import {connect} from "react-redux";
 import * as React from "react";
 import Users from "../Components/Users/Users";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import styles from "./../Components/Users/Users.module.css";
+// import CircularProgress from "@material-ui/core/CircularProgress";
+// import styles from "./../Components/Users/Users.module.css";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "redux";
+import Preloader from "../assets/Preloader/Preloader";
+import {
+    getCurrentPage, getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUserCount,
+    getUsers
+} from "../redux/users-selector";
 
 
 
@@ -35,7 +43,7 @@ class UsersAPIComponent extends React.Component {
     render() {
 
 
-        return <>    {this.props.isFetching ? <CircularProgress color="secondary" className={styles.toggle}/> : null}
+        return <>    {this.props.isFetching ? <Preloader/> : null}
             <Users totalUserCount={this.props.totalUserCount}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
@@ -52,12 +60,12 @@ class UsersAPIComponent extends React.Component {
 let mapStateToProps = (state) => {
 
     return {
-        users: state.usersSection.users,
-        pageSize: state.usersSection.pageSize,
-        totalUserCount: state.usersSection.totalUserCount,
-        currentPage: state.usersSection.currentPage,
-        isFetching: state.usersSection.isFetching,
-        followingInProgress : state.usersSection.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUserCount: getTotalUserCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress : getFollowingInProgress(state)
 
     }
 }
@@ -65,7 +73,7 @@ let mapStateToProps = (state) => {
 
 
 
-export default compose (withAuthRedirect,connect(mapStateToProps,{setCurrentPage,setFollowingProgress,getUsers,followUser,unfollowUser})) (UsersAPIComponent);
+export default compose (withAuthRedirect,connect(mapStateToProps,{setCurrentPage,setFollowingProgress,getUsers: requestUsers,followUser,unfollowUser})) (UsersAPIComponent);
 
 
 

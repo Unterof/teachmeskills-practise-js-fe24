@@ -89,7 +89,7 @@ export const updateUserStatus = (status) => {
 export const profileUserThunk = (userId) => {
     return (dispatch) => {
     if (!userId) {
-        userId = 2
+        userId = 9401
     }
     usersAPI.profileUser(userId).then(data => {
         dispatch(setUserProfile(data))

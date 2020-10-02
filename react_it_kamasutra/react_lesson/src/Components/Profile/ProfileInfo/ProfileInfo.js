@@ -1,18 +1,14 @@
 import React from "react";
 import styles from "../Profile.module.css"
-import avatar from "../../../assets/image/avatar.jpg"
+// import avatar from "../../../assets/image/avatar.jpg"
 import StatusField from "../../../Containers/StatusField";
+import Preloader from "../../../assets/Preloader/Preloader";
 
 const ProfileInfo = (props) => {
-if (!props.profile){
-    return (
-        <img
-            alt='avatar'
+    if (!props.profile) {
+        return <Preloader/>
+    }
 
-        src = {avatar}/>
-    )
-
-}
 
     return (
         <div className={styles.upper_container}>

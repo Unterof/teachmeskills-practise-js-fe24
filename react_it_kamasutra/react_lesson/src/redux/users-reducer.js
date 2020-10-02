@@ -80,7 +80,6 @@ const usersReducer = (state = initialState, action) => {
     }
 
 
-
 export const followSuccess = (userId) => {
     return {type: FOLLOW, userId};
 };
@@ -90,32 +89,33 @@ export const unfollowSuccess = (userId) => {
 };
 
 export const setUsers = (users) => {
-    return  {type: SET_USERS, users}
+    return {type: SET_USERS, users}
 };
 
 export const setCurrentPage = (currentPage) => {
-    return  {type: SET_CURRENT_PAGE, currentPage}
+    return {type: SET_CURRENT_PAGE, currentPage}
 };
 export const setTotalUserCount = (count) => {
-    return  {type: SET_TOTAL_USER_COUNT, count}
+    return {type: SET_TOTAL_USER_COUNT, count}
 };
 export const setToggleStatus = (isFetching) => {
-    return  {type: SET_TOGGLE_STATUS, isFetching}
+    return {type: SET_TOGGLE_STATUS, isFetching}
 };
 
 export const setFollowingProgress = (isFetching, userId) => {
-    return {type: SET_FOLLOWING_PROGRESS,isFetching ,userId}
+    return {type: SET_FOLLOWING_PROGRESS, isFetching, userId}
 }
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
     return (dispatch) => {
 
         dispatch(setToggleStatus(true))
 
 
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(page, pageSize).then(data => {
 
                 dispatch(setToggleStatus(false))
+                dispatch(setCurrentPage(page))
 
                 dispatch(setUsers(data.items))
                 dispatch(setTotalUserCount(data.totalCount))
