@@ -1,4 +1,4 @@
-const updateNewMessage = 'UPDATE-NEW-MESSAGE';
+// const updateNewMessage = 'UPDATE-NEW-MESSAGE';
 const sendMessage = 'SEND_MESSAGE';
 
 let initialState = {
@@ -9,7 +9,6 @@ let initialState = {
         {id: 4, name: "Valery", img: "/images/avatar/4.jpg"},
         {id: 5, name: "Zohan", img: "/images/avatar/5.jpg"}
 
-
     ]
     ,
     dialogs: [
@@ -19,13 +18,7 @@ let initialState = {
         {name: "Ksenya", message: "Have you ever seen an ocean?", id: 3},
         {name: "Valery", message: "You need to learn javascript more!", id: 4},
         {name: "Zohan", message: "Man you look crazy", id: 5},
-
-
     ],
-
-   
-
-
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -47,13 +40,11 @@ const dialogsReducer = (state = initialState, action) => {
     }
 
 }
-export const updateNewMessageCreator = (item) => {
-    return { type: updateNewMessage, item: item };
-};
+// export const updateNewMessageCreator = (item) => {
+//     return { type: updateNewMessage, item: item };
+// };
 
-export const sendMessageCreator = (newMessageBody) => {
-    return { type: sendMessage, newMessageBody };
-};
+export const sendMessageCreator = (newMessageBody) => ({ type: sendMessage, newMessageBody });
 
 export default dialogsReducer;
 

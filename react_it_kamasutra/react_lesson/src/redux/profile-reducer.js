@@ -52,52 +52,40 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = (newPostText) => {
-    return {type: addPost,newPostText};
-};
+export const addPostActionCreator = (newPostText) => ({type: addPost,newPostText})
 
-
-export const setUserProfile = (profile) => {
-    return {type: SET_USER_PROFILE, profile };
-};
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile });
 
 export const setUserStatus = (status) => {
     return {type: SET_USER_STATUS, status };
 };
 
-export const getUserStatus = (userId) => {
-    return (dispatch) => {
-   profileAPI.getStatus(userId).then(response=>{
-       dispatch(setUserStatus(response.data))
-
-   })
-    }
+export const getUserStatus = (userId) => (dispatch) => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setUserStatus(response.data))
+    })
 }
 
-export const updateUserStatus = (status) => {
-    return (dispatch) => {
-
-            profileAPI.updateStatus(status)
-                .then(response=>{
-                if (response.data.resultCode === 0){
+export const updateUserStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status)
+        .then(response => {
+            if (response.data.resultCode === 0) {
                 dispatch(setUserStatus(status))
-
-        }
+            }
 
         })
-    }
+
 }
 
 
-export const profileUserThunk = (userId) => {
-    return (dispatch) => {
+export const profileUserThunk = (userId) => (dispatch) => {
     if (!userId) {
         userId = 9401
     }
     usersAPI.profileUser(userId).then(data => {
         dispatch(setUserProfile(data))
     })
-}
+
 }
 
 export default profileReducer;
