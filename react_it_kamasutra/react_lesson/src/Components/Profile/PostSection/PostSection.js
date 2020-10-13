@@ -6,7 +6,7 @@ import PostSectionForm from './PostSectionForm';
 
 const PostSection = (props) => {
 
-    let postsElement = props.posts.posts.map(el => <Post message={el.message} likesCount={el.likesCount}/>)
+    let postsElement = props.posts.map(el => <Post message={el.message} likesCount={el.likesCount}/>)
 
     // let newPostElement = React.createRef();
 

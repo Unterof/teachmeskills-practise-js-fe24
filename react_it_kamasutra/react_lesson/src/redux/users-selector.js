@@ -1,7 +1,14 @@
-export const getUsers = (state) => {
+import { createSelector } from "reselect";
+
+ const getUsersSelector = (state) => {
     return state.usersSection.users
 
 }
+// в качестве примера , в данном случае используется криэйт селектор!!!
+export const getUsers = createSelector(getUsersSelector, (users) => {
+        return users.filter(u => true)
+})
+
 
 export const getPageSize = (state) => {
     return state.usersSection.pageSize

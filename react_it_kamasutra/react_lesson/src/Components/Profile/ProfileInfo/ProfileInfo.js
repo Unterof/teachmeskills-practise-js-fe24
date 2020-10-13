@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "../Profile.module.css"
-// import avatar from "../../../assets/image/avatar.jpg"
-import StatusField from "../../../Containers/StatusField";
+import styles from "../Profile.module.css";
+import avatar from "../../../assets/image/avatar.jpg" ;
+import StatusFieldHooks from "../../../Containers/StatusFieldHooks";
 import Preloader from "../../../assets/Preloader/Preloader";
+// import StatusField from "../../../Containers/StatusField";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -22,12 +23,12 @@ const ProfileInfo = (props) => {
 
                 <img
                 alt='avatar'
-                    src={props.profile.photos.large}/>
+                    src={props.profile.photos.large || avatar }/>
                     <div>
-                        <StatusField status={props.status} updateUserStatus={props.updateUserStatus}/>
+                        <StatusFieldHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
                     </div>
 
-             <p className={styles.aboutMe}>{props.profile.aboutMe}</p>
+             <p className={styles.aboutMe}>{props.profile.aboutMe} </p>
                 {/*<img alt="avatar" src={avatar}/>*/}
             </div>
                 <div>
