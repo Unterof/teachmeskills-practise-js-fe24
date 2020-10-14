@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-const StatusFieldHooks = (props) =>  {
+const StatusFieldHooks = React.memo(props =>  {
 
  // state = {
  //     editMode : false,
@@ -45,6 +45,6 @@ const StatusFieldHooks = (props) =>  {
           </div> 
        )
     }
-
+)
 
 export default StatusFieldHooks

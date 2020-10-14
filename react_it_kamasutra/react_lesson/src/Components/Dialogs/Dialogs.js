@@ -11,7 +11,7 @@ import DialogMessageItem from "./DialogsItemForm/DialogsItemForm.js";
 
 
 
-const Dialogs = (props) => {
+const Dialogs = React.memo(props => {
   let dialogsItem = props.dialogsItems.dialogs.map((el) => (
     <DialogsItem name={el.name} id={el.id} />
   ));
@@ -28,6 +28,7 @@ const Dialogs = (props) => {
 
   if (!props.isAuth) return <Redirect to={`/login`} />;
   return (
+
     <div className={styles.container}>
       <div className={styles.dialogsItems}>{dialogsItem}</div>
 
@@ -37,6 +38,7 @@ const Dialogs = (props) => {
       </div>
     </div>
   );
-};
+}
+);
 
 export default Dialogs;

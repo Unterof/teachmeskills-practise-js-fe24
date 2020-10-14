@@ -1,10 +1,11 @@
-import React from 'react' ;
+import React from 'react';
 import Post from './Posts/Post';
 import styles from './PostSection.module.css'
 import PostSectionForm from './PostSectionForm';
 
 
-const PostSection = (props) => {
+const PostSection = React.memo(props => {
+
 
     let postsElement = props.posts.map(el => <Post message={el.message} likesCount={el.likesCount}/>)
 
@@ -27,7 +28,7 @@ const PostSection = (props) => {
     return (
 
         <div className={styles.container}>
-     
+
             <PostSectionForm onSubmit={onAddPost}/>
             {/* <div>My posts</div>
             <div className={styles.containerInput}>
@@ -37,13 +38,13 @@ const PostSection = (props) => {
             <div className={styles.containerButton}>
                 <button onClick={onAddPost}>Add</button>
             </div> */}
-          
-          
-          <div>{postsElement}</div>
-            
+
+
+            <div>{postsElement}</div>
+
 
         </div>
     )
-}
+});
 
 export default PostSection;
