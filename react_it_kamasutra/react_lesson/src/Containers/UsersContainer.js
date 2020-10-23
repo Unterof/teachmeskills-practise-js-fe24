@@ -31,13 +31,16 @@ import {
 class UsersAPIComponent extends React.Component {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage,this.props.pageSize);
+        //дестркуктуризация читать статью Дэна Абрамова 
+        const {currentPage,pageSize} = this.props
+        this.props.getUsers(currentPage,pageSize);
 
 
     }
 
     onPageChanged = (page) => {
-        this.props.getUsers(page,this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.getUsers(page,pageSize)
     }
 
     render() {

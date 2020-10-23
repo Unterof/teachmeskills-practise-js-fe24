@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './PostSection.module.css'
 import { Field, reduxForm } from 'redux-form';
-import { maxLength, required } from '../../../utils/FormControls';
+import { maxLength, required } from '../../../utils/formHelpersFunctions';
 import { Textarea } from '../../common/FormControls/FormControls';
 
 const maxLength30 = maxLength(30)

@@ -1,87 +1,39 @@
 import React from "react";
 import styles from "./Users.module.css";
-import avatar from "../../assets/image/avatar.jpg";
-import Button from "@material-ui/core/Button";
-import {NavLink} from "react-router-dom";
-
+import Paginator from "../common/Paginator/Paginator";
+import User from "../common/User/UserHelper";
 
 // import Pagination from '@material-ui/lab/Pagination';
 
 
-let Users = (props) => {
-
-    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize)
-    let pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
-
-    return (
-
-        <div className={styles.container}>
-            {/*<button onClick={this.getUser}>Get Users</button>*/}
-            <div className={styles.pages}>
-
-                {pages.map(e => {
-                    return (
-
-                        <span className={props.currentPage === e && styles.selectedPage}
-                              onClick={() => {
-
-                                  props.onPageChanged(e)
-                              }}>{e}</span>
-                        // <Pagination count={e} color="primary" className={this.props.currentPage === e && styles.selectedPage} onClick={()=>{this.onPageChanged(e)}} />
-                    )
-                })}
-
-                {/*    <Pagination count={pages} color="primary" />*/}
-
-            </div>
-
-            {props.users.map(e => {
-
-                return (
-
-                    <div className={styles.containerItem} key={e.id}>
-
-                        <div>
-                            <NavLink to={'/profile/' + e.id}>
-                                <img alt={e.name} src={e.photos.small != null ? e.photos.small : avatar}
-                                     className={styles.avatar}/>
-                            </NavLink>
-                            {/*<Avatar alt={e.name} src={e.photos.small} />*/}
-
-                            <div>
-                                {e.followed
-                                    ? <Button disabled={props.followingInProgress.some(id => id === e.id)}
-                                                      variant="contained" color="secondary"
-                                                      onClick={() => {props.unfollow(e.id)}}>UNFOLLOW</Button>
-
-                                    : <Button disabled={props.followingInProgress.some(id => id === e.id)}
-                                              variant="contained" color="secondary"
-                                              onClick={() => {props.follow(e.id)}}>FOLLOW</Button>}
-
-                            </div>
-                            <span>
-                                <span>
-                                    <div>{e.name}</div>
-                                    <div>{e.status}</div>
-                                </span>
-                                <span>
-                                    <div> {'e.location.country'} </div>
-                                    <div>{'e.location.city'}</div>
-                                </span>
-                            </span>
-                        </div>
-                    </div>
+let Users = ({ users, totalUserCount, pageSize, currentPage, onPageChanged,...props }) => {
+//Рефакторинг : для облегчения чтения и компиляции, разбили код по компонентам дополнительным
+    return <div className={styles.container}>
+        <Paginator totalUserCount={totalUserCount}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChanged={onPageChanged} />
 
 
-                )
-            })}
-        </div>
+        {users.map(e => <User user={e}
+            key={e.id}
+            followingInProgress={props.followingInProgress}
+            unfollow={props.unfollow}
+            follow={props.follow} />
 
-    )
+        )
+        }
+
+
+    </div>
+
+
 }
+
+
+
+
+
 
 
 export default Users;

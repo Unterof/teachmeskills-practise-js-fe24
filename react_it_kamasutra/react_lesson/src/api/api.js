@@ -9,33 +9,30 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
-        return instance
-            .get(`users?page=${currentPage}&count=${pageSize}`)
-            .then((response) => {
-                return response.data;
-            });
-    },
+  async getUsers(currentPage = 1, pageSize = 10) {
+    let response = await instance.get(`users?page=${currentPage}&count=${pageSize}`)
+    return response.data
+  },
 
-    follow(user = 1) {
-        return instance.post(`follow/${user}`);
-    },
+  follow(user = 1) {
+    return instance.post(`follow/${user}`);
+  },
 
-    unfollow(user = 1) {
-        return instance.delete(`follow/${user}`);
-    },
+  unfollow(user = 1) {
+    return instance.delete(`follow/${user}`);
+  },
 
-    profileUser(id) {
-        console.warn("Obsolete method! ProfileAPI object");
-        return profileAPI.getProfileUser(id);
-    },
+  profileUser(id) {
+    console.warn("Obsolete method! ProfileAPI object");
+    return profileAPI.getProfileUser(id);
+  },
 };
 
 export const profileAPI = {
-    getProfileUser(id) {
-        return instance.get(`profile/` + id).then((response) => {
+   async getProfileUser(id) {
+        let response = await instance.get(`profile/` + id)
             return response.data;
-        });
+        
     },
 
     getStatus(id) {

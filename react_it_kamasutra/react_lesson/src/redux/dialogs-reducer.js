@@ -40,14 +40,16 @@ const dialogsReducer = (state = initialState, action) => {
     }
 
 }
-// export const updateNewMessageCreator = (item) => {
-//     return { type: updateNewMessage, item: item };
-// };
 
 export const sendMessageCreator = (newMessageBody) => ({ type: sendMessage, newMessageBody });
 
 export default dialogsReducer;
 
+
+
+// export const updateNewMessageCreator = (item) => {
+//     return { type: updateNewMessage, item: item };
+// };
 
 
 //------ до рефакторинга ------------------

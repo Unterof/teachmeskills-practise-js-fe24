@@ -7,3 +7,10 @@
 
     margin-right: 1px;
 }
+.pages span:hover{
+    cursor: pointer;
+}
+
+.selectedPage {
+    font-weight: bold;
+}

@@ -1,0 +1,37 @@
+
+.container{
+    position: relative;
+ background-color: #80ffff;
+  grid-template-columns:10fr;
+}
+.pages span{
+
+    margin-right: 1px;
+}
+.pages span:hover{
+    cursor: pointer;
+}
+.containerItem{
+
+ display: block;
+  padding: 10px;
+
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+
+}
+
+.selectedPage {
+    font-weight: bold;
+}
+
+.toggle {
+    margin-left: 50%;
+    margin-top:25%;
+    position: absolute;
+    z-index: 1;
+}
+
