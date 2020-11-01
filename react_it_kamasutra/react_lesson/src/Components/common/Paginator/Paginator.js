@@ -1,12 +1,15 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "./Paginator.module.css";
 
+import cn  from "classnames"
 
 
 
 
 
- let Paginator = ({totalUserCount, pageSize, currentPage,  onPageChanged}) => {
+
+
+ let Paginator = ({totalUserCount, pageSize, currentPage,  onPageChanged, portionSize = 20}) => {
 
     let pagesCount = Math.ceil(totalUserCount / pageSize)
     let pages = [];
@@ -14,31 +17,63 @@ import styles from "./Paginator.module.css";
         pages.push(i)
     }
 
-    return (
+    let portionCount = Math.ceil(pagesCount/portionSize);
+    let [portionNumber,setPortionNumber] = useState(1);
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize +1 ;
+    let rightPortionPageNumber = portionNumber * portionSize
+     let prevButton = () => {setPortionNumber(portionNumber-1)};
+    let nextButton = () =>  {
+        setPortionNumber(portionNumber + 1)
+    }
 
-        <div className={styles.container}>
+    return (<div className={styles.pages}>
+            {portionNumber > 1 && <button onClick={prevButton}>PREV</button>}
 
-            <div className={styles.pages}>
-
-                {pages.map(e => {
-                    return (
-
-                        <span className={currentPage === e && styles.selectedPage}
-                              onClick={() => {
-
-                                  onPageChanged(e)
-                              }}>{e}</span>
-
-                    )
+            {pages
+                .filter(p => p >= leftPortionPageNumber && p<= rightPortionPageNumber)
+                .map((p)=>{
+                    return <span className = { cn ({
+                    [styles.selectedPage]: currentPage === p},'styles.pages'
+                    )}
+                   key ={p}
+                   onClick = {(e) => {
+                   onPageChanged(p)
+                   }}>{p}</span>
                 })}
-            </div>
+       {portionCount > portionNumber && <button onClick={nextButton}>NEXT</button> }
 
 
-        </div>
 
+
+
+
+
+</div>
     )
+
+
 }
 
 export default Paginator
 
 
+
+// <div className={styles.container}>
+//
+//     <div className={styles.pages}>
+//
+//     {pages.map(e => {
+//             return (
+//
+//                 <span className={currentPage === e && styles.selectedPage}
+//                       onClick={() => {
+//
+//                           onPageChanged(e)
+//                       }}>{e}</span>
+//
+//             )
+//         })}
+// </div>
+//
+//
+// </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../Profile.module.css";
 import avatar from "../../../assets/image/avatar.jpg" ;
-import StatusFieldHooks from "../../../Containers/StatusFieldHooks";
+import StatusFieldHooks from "./StatusFieldHooks";
 import Preloader from "../../../assets/Preloader/Preloader";
 // import StatusField from "../../../Containers/StatusField";
 
