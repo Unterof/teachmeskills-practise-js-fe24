@@ -4,7 +4,7 @@
     grid-template-columns:10fr;
 }
 .pages span{
-
+   border: solid 1px grey;
     margin-right: 1px;
 }
 .pages span:hover{

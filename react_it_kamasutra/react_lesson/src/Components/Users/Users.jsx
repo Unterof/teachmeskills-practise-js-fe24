@@ -7,7 +7,7 @@ import User from "../common/User/UserHelper";
 
 
 let Users = ({ users, totalUserCount, pageSize, currentPage, onPageChanged,...props }) => {
-//Рефакторинг : для облегчения чтения и компиляции, разбили код по компонентам дополнительным
+//Рефакторинг : для облегчения чтения и компиляции, разбили код по дополнительным компонентам
     return <div className={styles.container}>
         <Paginator totalUserCount={totalUserCount}
             pageSize={pageSize}
