@@ -31,7 +31,7 @@
 //
 //     return (<div className={styles.pages}>
 //
-// <Pagination count={pagesCounter} color="secondary" />
+// <Pagination count={pagesCount} color="secondary" />
 //
 //             {/* {portionNumber > 1 && <button onClick={prevButton}>PREV</button>}
 //

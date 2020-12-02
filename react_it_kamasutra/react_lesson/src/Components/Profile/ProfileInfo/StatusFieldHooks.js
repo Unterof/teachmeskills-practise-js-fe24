@@ -34,7 +34,7 @@ const StatusFieldHooks = React.memo(props =>  {
            <div>
           <div>
               {!editMode && <div>
-                  <span onDoubleClick={activationMode}>{props.status || '--------' } </span>
+                  <span onDoubleClick={activationMode}><b>Status : </b>{props.status || '--------' } </span>
               </div>}
               {editMode && <div>
                   <input value={status}  onChange={onStatusChange} autoFocus={true} onBlur={deactivationMode}  />

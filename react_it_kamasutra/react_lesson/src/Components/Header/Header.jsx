@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import {NavLink} from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 
 const Header = (props) => {
@@ -13,7 +14,9 @@ const Header = (props) => {
         />
 
         <div className = {styles.loginBlock}>
-            {props.isAuth ? <div>{props.login}<button onClick={props.logoutMe}>LOGOUT</button></div> : <NavLink to='/login'>Login</NavLink>}
+            {props.isAuth ? <div>{props.login}<Button onClick={props.logoutMe} variant="contained"  href="#contained-buttons">
+                LOGOUT
+            </Button></div> : <NavLink to='/login'>Login</NavLink>}
 
         </div>
 
