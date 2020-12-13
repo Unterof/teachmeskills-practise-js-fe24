@@ -10,7 +10,7 @@ const Profile = (props) => {
     return (
 
         <div className={styles.container}>
-            <ProfileInfo updateUserPhoto={props.updateUserPhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
+            <ProfileInfo saveProfile={props.saveProfile} updateUserPhoto={props.updateUserPhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
             <PostSectionContainer  />
         </div>
     );

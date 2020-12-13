@@ -1,18 +1,23 @@
 import React from "react";
 import styles from "./Users.module.css";
-import Paginator from "../common/Paginator/Paginator";
+// import Paginator from "../common/Paginator/Paginator";
 import User from "../common/User/UserHelper";
+import { Pagination } from "@material-ui/lab";
 
 // import Pagination from '@material-ui/lab/Pagination';
 
 
 let Users = ({ users, totalUserCount, pageSize, currentPage, onPageChanged,...props }) => {
 //Рефакторинг : для облегчения чтения и компиляции, разбили код по дополнительным компонентам
+    let pagesCount = Math.ceil(totalUserCount / pageSize)
+   
+   
+   const handleChange = (e,value) => {
+    onPageChanged(value)
+   }
     return <div className={styles.container}>
-        <Paginator totalUserCount={totalUserCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChanged={onPageChanged} />
+        
+        <Pagination color="primary" count={pagesCount} onChange={handleChange} />
 
 
         {users.map(e => <User user={e}

@@ -5,11 +5,15 @@ import {CreateField, Input, Textarea} from "../common/FormControls/FormControls"
 import {reduxForm} from "redux-form";
 
 
-const ProfileDataForm =({handleSubmit})=>{
+const ProfileDataForm =({handleSubmit,profile})=>{
+
+
 return (
 
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} >
+     <button>save</button>
         <div>
+            
             <p className={styles.fullName}>{CreateField("Full name",[required],"fullName",Input,)}</p>
         </div>
         <div>
@@ -22,12 +26,12 @@ return (
         <div>
             <b>About me : {CreateField("About Me",null,"aboutMe",Textarea) }</b>
         </div>
-        {/*<div className={styles.contacts}>*/}
-        {/*    {Object.keys(profile.contacts).map(key => {*/}
-        {/*            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]}/>*/}
-        {/*        }*/}
-        {/*    )}*/}
-        {/*</div>*/}
+        <div className={styles.contacts}>
+           {Object.keys(profile.contacts).map(key => {
+                   return <div className={styles.contacts} key={key}>{key}:{CreateField(key,null,`contacts.${key}`,Input,)} </div> }
+               
+           )}
+        </div>
     </form>
 )
 }
