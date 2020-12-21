@@ -7,7 +7,7 @@ import PostSectionForm from './PostSectionForm';
 const PostSection = React.memo(props => {
 
 
-    let postsElement = props.posts.map(el => <Post message={el.message} likesCount={el.likesCount}/>)
+    let postsElement = props.posts.map(el => <Post key={el.id} message={el.message} likesCount={el.likesCount}/>)
 
     // let newPostElement = React.createRef();
 
@@ -27,7 +27,7 @@ const PostSection = React.memo(props => {
 
     return (
 
-        <div className={styles.container}>
+        <div key="postElementContainer" className={styles.container}>
 
             <PostSectionForm onSubmit={onAddPost}/>
             {/* <div>My posts</div>
@@ -40,7 +40,7 @@ const PostSection = React.memo(props => {
             </div> */}
 
 
-            <div>{postsElement}</div>
+            <div key="postElement">{postsElement}</div>
 
 
         </div>

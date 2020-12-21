@@ -21,10 +21,13 @@ const ProfileInfo = React.memo((props) => {
       props.updateUserPhoto(e.target.files[0]);
     }
   };
-
+ 
   const onSubmit = (formData) => {
-   props.saveProfile(formData);
-   setEditMode(false)
+   props.saveProfile(formData).then(()=>{
+    setEditMode(false)
+   })
+   
+   
   };
   return (
     <div className={styles.upper_container}>
@@ -43,7 +46,10 @@ const ProfileInfo = React.memo((props) => {
         />
         <div>
           {editMode ? (
-            <ProfileDataForm initialValues={props.profile} profile={props.profile} onSubmit={onSubmit} />
+            <ProfileDataForm 
+            initialValues={props.profile}
+             profile={props.profile}
+              onSubmit={onSubmit} />
           ) : (
             <ProfileData editProfile={editProfile} profile={props.profile} />
           )}

@@ -9,10 +9,10 @@ import {Redirect} from "react-router-dom";
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-const Login = ({loginMe,isAuth}) => {
+const Login = ({loginMe,isAuth,captcha}) => {
     const formSubmit = (formData) => {
 
-        loginMe(formData.email, formData.password, formData.rememberMe)
+        loginMe(formData.email, formData.password, formData.rememberMe,formData.captcha)
 
     }
     if (isAuth) { return <Redirect to={`/profile`}/>}
@@ -21,14 +21,17 @@ const Login = ({loginMe,isAuth}) => {
     return (
            <div>
                 <h2>LOGIN</h2>
-                <LoginReduxForm onSubmit={formSubmit}/>
+                <LoginReduxForm onSubmit={formSubmit} captcha={captcha}/>
+
 
             </div>
     );
 };
 
 let mapStateToProps = (state) => ({
-    isAuth : state.auth.isAuth
+    isAuth : state.auth.isAuth,
+    captcha : state.auth.captcha
+
 })
 
 

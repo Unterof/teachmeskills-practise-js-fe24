@@ -8,7 +8,7 @@ import { reducer as formReducer } from 'redux-form'
 import thunk from "redux-thunk"
 import appReducer from "./app-reducer";
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     postsSection:profileReducer,
     dialogsItems :dialogsReducer,
     sidebarSection:sidebarReducer,

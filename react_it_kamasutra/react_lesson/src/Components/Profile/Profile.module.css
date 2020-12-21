@@ -25,3 +25,9 @@ background-color: #80ffff;
   padding-left: 1em;
 
 }
+
+.formOnError {
+  width: 25%;
+  color: red;
+  font-weight: bold;
+}

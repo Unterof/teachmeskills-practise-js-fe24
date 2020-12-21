@@ -5,14 +5,16 @@ import {CreateField, Input, Textarea} from "../common/FormControls/FormControls"
 import {reduxForm} from "redux-form";
 
 
-const ProfileDataForm =({handleSubmit,profile})=>{
+const ProfileDataForm =({handleSubmit,profile,error})=>{
 
 
 return (
 
     <form onSubmit={handleSubmit} >
-     <button>save</button>
+     <button >save</button>
         <div>
+
+            {error &&<div> <span  className={styles.formOnError}> {error}</span></div>}
             
             <p className={styles.fullName}>{CreateField("Full name",[required],"fullName",Input,)}</p>
         </div>

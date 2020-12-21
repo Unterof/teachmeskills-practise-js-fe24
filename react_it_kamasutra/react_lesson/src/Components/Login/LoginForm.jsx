@@ -6,7 +6,7 @@ import styles from './../Header/Header.module.css'
 
 
 
-const LoginForm = ({handleSubmit,error}) => {
+const LoginForm = ({handleSubmit,error,captcha}) => {
 
     return (
 
@@ -15,6 +15,8 @@ const LoginForm = ({handleSubmit,error}) => {
             {CreateField("email",[required],"email",Input)}
             {CreateField("password",[required],"password",Input,{type:"password"})}
             <span className={styles.formOnError}> {error}</span>
+            {captcha && <div><img alt='captcha' src={captcha}/></div>  }
+            {captcha && CreateField("",[required],"captcha",Input)}
             {CreateField(null,null,"rememberMe",Input, {type:"checkbox"},null,"Remember Me")}
 
             <div>
@@ -24,6 +26,6 @@ const LoginForm = ({handleSubmit,error}) => {
         </form>
     )
 
-};
+}
 
 export default LoginForm
